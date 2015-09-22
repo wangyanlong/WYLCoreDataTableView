@@ -50,5 +50,27 @@ objc
     
     [self.view addSubview:ctv];
 
+no.5 Custom the new tableView delegate method like this
+	
+	#import "Comic.h"
+	#import "CollectionTableView.h"
+
+	@implementation CollectionTableView
+
+	- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    Comic *c = [self.frc objectAtIndexPath:indexPath];
+    cell.textLabel.text = c.name;
+    
+    return cell;
+    
+	}
+
 #License
 MIT
