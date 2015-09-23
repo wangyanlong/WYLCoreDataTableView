@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "WYLCoreDataTableView"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "A NSFetchedResultController based on tableView"
   s.description      = <<-DESC
 			A NSFetchedResultController based on tableView. 553836854@qq.com            
