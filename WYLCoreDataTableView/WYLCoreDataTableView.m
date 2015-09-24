@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        
+         
         self.delegate = self;
         self.dataSource = self;
         self.batchSize = 10;
