@@ -5,7 +5,7 @@
  
  1.Add the pod `WYLCoreDataTableView` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
 ```ruby
-pod 'WYLCoreDataTableView', '~> 1.0.0'
+pod 'WYLCoreDataTableView', '~> 1.0.1'
 ```
 
  2.Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
