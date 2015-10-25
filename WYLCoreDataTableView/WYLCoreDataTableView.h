@@ -61,6 +61,21 @@
 @property (nonatomic,assign)UITableViewCellEditingStyle editStyle;
 
 /*!
+ *  Custom TableView edit type's bool value . default NO
+ */
+@property (nonatomic,assign)BOOL isTableViewEdit;
+
+/*!
+ *  when tableview is none datasource , isShowNoneView is YES. default NO
+ */
+@property (nonatomic,assign)BOOL isShowNoneView;
+
+/*!
+ *  Custom ImageView . Show this view on noneDataView.Show the information you want to convey to the user.
+ */
+@property (nonatomic,strong)UIView *noneView;
+
+/*!
  *  set up FetchTableView
  */
 - (void)createFetchTableViewInfomation;
