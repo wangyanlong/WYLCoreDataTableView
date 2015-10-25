@@ -14,9 +14,49 @@
 
 @implementation AppDelegate
 
+- (void)t1{
+    NSFetchRequest *r = [NSFetchRequest fetchRequestWithEntityName:@"Comic"];
+    NSArray *arr = [_managedObjectContext executeFetchRequest:r error:nil];
+    
+    for (Comic *c  in arr) {
+        [_managedObjectContext deleteObject:c];
+    }
+    
+    [_managedObjectContext save:nil];
+
+}
+
+- (void)t2{
+    for (int i = 0; i < 100; i++) {
+        
+        Comic *c = [NSEntityDescription insertNewObjectForEntityForName:@"Comic" inManagedObjectContext:self.managedObjectContext];
+        
+        c.comicID = [NSNumber numberWithInt:i];
+        
+        c.name = [NSString stringWithFormat:@"名字 : %d",i];
+        
+        if (i < 50) {
+            c.loading = [NSNumber numberWithInt:i];
+        }
+        
+        c.success = [NSNumber numberWithInt:i];
+        
+    }
+    
+    [self.managedObjectContext save:nil];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self persistentStoreCoordinator];
+    [self managedObjectContext];
+    
+    
+    [self performSelector:@selector(t1) withObject:nil afterDelay:3];
+    [self performSelector:@selector(t2) withObject:nil afterDelay:6];
+    
+    
     return YES;
 }
 

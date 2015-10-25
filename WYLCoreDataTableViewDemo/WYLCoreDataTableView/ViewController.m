@@ -18,10 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor redColor];
+
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    CollectionTableView *ctv = [[CollectionTableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+    CollectionTableView *ctv = [[CollectionTableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"comicID" ascending:YES];
     ctv.context = app.managedObjectContext;

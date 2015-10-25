@@ -8,6 +8,15 @@
 
 #import "WYLCoreDataTableView.h"
 
+@interface WYLCoreDataTableView ()
+
+/*!
+ *  when tableview is none datasource , shwo this view on window
+ */
+@property (nonatomic,strong)UIView *noneDataView;
+
+@end
+
 @implementation WYLCoreDataTableView
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -21,6 +30,8 @@
         self.batchSize = 10;
         self.bounces = NO;
         self.canMoveRow = NO;
+        self.isTableViewEdit = NO;
+        self.isShowNoneView = NO;
         self.editStyle = UITableViewCellEditingStyleNone;
         
         if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -34,6 +45,8 @@
             [self setLayoutMargins:UIEdgeInsetsZero];
             
         }
+        
+        [self addObserver:self forKeyPath:@"isShowNoneView" options:NSKeyValueObservingOptionNew context:nil];
     }
 
     return self;
@@ -61,7 +74,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    WYLCoreDataTableView *tb = (WYLCoreDataTableView *)tableView;
+    
     NSInteger num = [[self.frc.sections objectAtIndex:section] numberOfObjects];
+    
+    if (num > 0 && tb.isShowNoneView){
+        tb.isShowNoneView = NO;
+    }else if (num == 0 && !tb.isShowNoneView){
+        tb.isShowNoneView = YES;
+    }
     
     return num;
 }
@@ -163,6 +184,35 @@
     }
     
 }
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    
+    BOOL new = [[change objectForKey:@"new"] boolValue];
+    
+    if (new) {
+        [self addSubview:self.noneDataView];
+    }else{
+        [self.noneDataView removeFromSuperview];
+    }
+    
+}
+
+- (UIView *)noneDataView{
+    
+    if (_noneDataView) {
+        return _noneDataView;
+    }
+    
+    _noneDataView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    _noneDataView.backgroundColor = [UIColor whiteColor];
+    [_noneDataView addSubview:self.noneView];
+    
+    return _noneDataView;
+    
+}
+
 
 #pragma mark - set up
 
