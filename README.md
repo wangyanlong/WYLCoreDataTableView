@@ -5,7 +5,7 @@
  
  1.Add the pod `WYLCoreDataTableView` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
 ```ruby
-pod 'WYLCoreDataTableView', '~> 1.0.3'
+pod 'WYLCoreDataTableView', '~> 1.0.4'
 ```
 
  2.Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
@@ -72,7 +72,7 @@ no.5 Custom the new tableView delegate method like this
     
 	}
 
-# version 1.0.3
+# version 1.0.4
 Joined, when no data, to the user to display no data pages
 #License
 MIT
