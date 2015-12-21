@@ -8,6 +8,8 @@
 
 #import "WYLCoreDataTableView.h"
 
+#define iOSValue [[[UIDevice currentDevice] systemVersion] floatValue]
+
 @interface WYLCoreDataTableView ()
 
 /*!
@@ -176,9 +178,18 @@
             }
             break;
         case NSFetchedResultsChangeMove:
+            
+            if (iOSValue < 9.0 && iOSValue >= 8.0) {
+                if (indexPath.row == newIndexPath.row && indexPath.section == newIndexPath.section) {
+                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+                    break;
+                }
+            }
+            
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
+            
         default:
             break;
     }

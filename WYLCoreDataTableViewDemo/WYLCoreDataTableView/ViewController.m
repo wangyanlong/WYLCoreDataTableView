@@ -30,6 +30,8 @@
     ctv.sortArray = @[sortDescriptor];
     ctv.entityName = @"Comic";
     [ctv createFetchTableViewInfomation];
+    
+    [ctv registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 
     [self.view addSubview:ctv];
 }

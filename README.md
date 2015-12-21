@@ -5,7 +5,7 @@
  
  1.Add the pod `WYLCoreDataTableView` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
 ```ruby
-pod 'WYLCoreDataTableView', '~> 1.0.4'
+pod 'WYLCoreDataTableView'
 ```
 
  2.Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
@@ -47,6 +47,8 @@ objc
     ctv.sortArray = @[sortDescriptor];
     ctv.entityName = @"Comic";
     [ctv createFetchTableViewInfomation];
+    [ctv registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+
     
     [self.view addSubview:ctv];
 
@@ -59,11 +61,7 @@ no.5 Custom the new tableView delegate method like this
 
 	- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     Comic *c = [self.frc objectAtIndexPath:indexPath];
     cell.textLabel.text = c.name;
@@ -71,6 +69,9 @@ no.5 Custom the new tableView delegate method like this
     return cell;
     
 	}
+	
+# version 1.0.5
+fix iOS8 bug, change cell registerClass.	
 
 # version 1.0.4
 Joined, when no data, to the user to display no data pages
