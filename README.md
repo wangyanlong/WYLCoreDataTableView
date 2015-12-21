@@ -70,7 +70,7 @@ no.5 Custom the new tableView delegate method like this
     
 	}
 	
-# version 1.0.5
+# version 1.0.6
 fix iOS8 bug, change cell registerClass.	
 
 # version 1.0.4
