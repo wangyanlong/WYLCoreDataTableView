@@ -233,9 +233,17 @@
         
         [self.context performBlockAndWait:^{
             
-            if (![self.frc performFetch:nil]) {
-                NSLog(@"Fetch error");
+            int num = 0;
+            
+            while (num < 5) {
+                if (![self.frc performFetch:nil]) {
+                    NSLog(@"Fetch error");
+                }else{
+                    break;
+                }
+                num++;
             }
+            
             [self reloadData];
         }];
         
