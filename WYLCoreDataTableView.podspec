@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "WYLCoreDataTableView"
-  s.version          = "1.0.7"
+  s.version          = "1.0.8"
   s.summary          = "A NSFetchedResultController based on tableView"
   s.description      = <<-DESC
 			A NSFetchedResultController based on tableView. 553836854@qq.com            
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/wangyanlong/WYLCoreDataTableView.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/NAME'
 
-  s.platform     = :ios, '4.3'
+  s.platform     = :ios, '8.0'
   # s.ios.deployment_target = '5.0'
   # s.osx.deployment_target = '10.7'
   s.requires_arc = true

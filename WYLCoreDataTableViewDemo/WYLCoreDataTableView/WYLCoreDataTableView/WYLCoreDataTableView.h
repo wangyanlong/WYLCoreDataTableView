@@ -75,6 +75,11 @@
  */
 @property (nonatomic,strong)UIView *noneView;
 
+/**
+ when tableview has performFetch return YES, hasPerformFetch == YES,or hasPerformFetch == NO
+ */
+@property (nonatomic,assign)BOOL hasPerformFetch;
+
 /*!
  *  set up FetchTableView
  */

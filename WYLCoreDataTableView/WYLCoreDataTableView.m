@@ -239,12 +239,15 @@
                 if (![self.frc performFetch:nil]) {
                     NSLog(@"Fetch error");
                 }else{
+                    self.hasPerformFetch = YES;
                     break;
                 }
                 num++;
             }
             
-            [self reloadData];
+            if (self.hasPerformFetch){
+                [self reloadData];
+            }
         }];
         
     }else{
